@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>91E29AEC-A9E6-4C3E-987A-3681245085B8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MoivePlayerTest</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AFCFED87-C772-4B3C-9799-734986204B9E</key>
+		<string>https://github.com/675940004/MoviePlayer.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MoivePlayerTest/MoivePlayerTest.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AFCFED87-C772-4B3C-9799-734986204B9E</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/675940004/MoviePlayer.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AFCFED87-C772-4B3C-9799-734986204B9E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AFCFED87-C772-4B3C-9799-734986204B9E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MoviePlayer</string>
+		</dict>
+	</array>
+</dict>
+</plist>

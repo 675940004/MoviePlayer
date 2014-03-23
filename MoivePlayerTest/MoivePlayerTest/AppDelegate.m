@@ -20,6 +20,8 @@
     self.window.rootViewController = [[[RootViewController alloc] init] autorelease];
     
     [self.window makeKeyAndVisible];
+    
+    //changed mark
     return YES;
 }
 
