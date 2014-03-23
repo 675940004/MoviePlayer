@@ -22,6 +22,7 @@
     [self.window makeKeyAndVisible];
     
     //changed mark
+    //changed mark
     return YES;
 }
 
