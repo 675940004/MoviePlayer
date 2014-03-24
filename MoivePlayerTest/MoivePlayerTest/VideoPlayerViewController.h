@@ -8,9 +8,15 @@
 
 #import <UIKit/UIKit.h>
 @class MPMoviePlayerController;
+@class BottomProgressView;
 
 @interface VideoPlayerViewController : UIViewController
+{
+    NSTimer * timer;
+}
 
 @property (nonatomic, retain) MPMoviePlayerController * moviePlayerController;
+
+@property (nonatomic, retain) BottomProgressView * bottomProgressView;
 
 @end
