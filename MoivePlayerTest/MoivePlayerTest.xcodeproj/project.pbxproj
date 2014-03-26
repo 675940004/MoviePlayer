@@ -50,7 +50,7 @@
 		E1211F7418E011C300FBA23C /* volume_on.png in Resources */ = {isa = PBXBuildFile; fileRef = E1211F4B18E011C300FBA23C /* volume_on.png */; };
 		E1211F7718E012E700FBA23C /* BottomProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1211F7618E012E700FBA23C /* BottomProgressView.m */; };
 		E1211F7A18E0131500FBA23C /* TopTitleBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1211F7918E0131500FBA23C /* TopTitleBarView.m */; };
-		E1211F7D18E013E200FBA23C /* LetfToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1211F7C18E013E200FBA23C /* LetfToolView.m */; };
+		E1211F7D18E013E200FBA23C /* RightToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1211F7C18E013E200FBA23C /* RightToolView.m */; };
 		E1294AB618DEDADC00D6703A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1294AB518DEDADC00D6703A /* Foundation.framework */; };
 		E1294AB818DEDADC00D6703A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1294AB718DEDADC00D6703A /* CoreGraphics.framework */; };
 		E1294ABA18DEDADC00D6703A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1294AB918DEDADC00D6703A /* UIKit.framework */; };
@@ -67,6 +67,11 @@
 		E1294AE818DEDC5400D6703A /* Movie.m4v in Resources */ = {isa = PBXBuildFile; fileRef = E1294AE718DEDC5400D6703A /* Movie.m4v */; };
 		E1294AEA18DEDC8700D6703A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1294AE918DEDC8700D6703A /* MediaPlayer.framework */; };
 		E1294B2E18DEF4FF00D6703A /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1294B2D18DEF4FF00D6703A /* VideoPlayerViewController.m */; };
+		E135CCFF18E2C6CE00D8D9AD /* UIColor+hexRGB.m in Sources */ = {isa = PBXBuildFile; fileRef = E135CCFE18E2C6CE00D8D9AD /* UIColor+hexRGB.m */; };
+		E135CD0218E2C89700D8D9AD /* BackForwardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E135CD0118E2C89700D8D9AD /* BackForwardView.m */; };
+		E14F06A118E1289000768D0D /* bottom_browser_back_disable.png in Resources */ = {isa = PBXBuildFile; fileRef = E14F069F18E1289000768D0D /* bottom_browser_back_disable.png */; };
+		E14F06A218E1289000768D0D /* bottom_browser_back_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = E14F06A018E1289000768D0D /* bottom_browser_back_normal.png */; };
+		E16848AF18E16AFB00213191 /* MovieControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16848AE18E16AFB00213191 /* MovieControlView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,8 +130,8 @@
 		E1211F7618E012E700FBA23C /* BottomProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomProgressView.m; sourceTree = "<group>"; };
 		E1211F7818E0131500FBA23C /* TopTitleBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopTitleBarView.h; sourceTree = "<group>"; };
 		E1211F7918E0131500FBA23C /* TopTitleBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopTitleBarView.m; sourceTree = "<group>"; };
-		E1211F7B18E013E200FBA23C /* LetfToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetfToolView.h; sourceTree = "<group>"; };
-		E1211F7C18E013E200FBA23C /* LetfToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetfToolView.m; sourceTree = "<group>"; };
+		E1211F7B18E013E200FBA23C /* RightToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightToolView.h; sourceTree = "<group>"; };
+		E1211F7C18E013E200FBA23C /* RightToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightToolView.m; sourceTree = "<group>"; };
 		E1294AB218DEDADC00D6703A /* MoivePlayerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoivePlayerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1294AB518DEDADC00D6703A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E1294AB718DEDADC00D6703A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -149,6 +154,14 @@
 		E1294AE918DEDC8700D6703A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		E1294B2C18DEF4FF00D6703A /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
 		E1294B2D18DEF4FF00D6703A /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
+		E135CCFD18E2C6CE00D8D9AD /* UIColor+hexRGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+hexRGB.h"; sourceTree = "<group>"; };
+		E135CCFE18E2C6CE00D8D9AD /* UIColor+hexRGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hexRGB.m"; sourceTree = "<group>"; };
+		E135CD0018E2C89700D8D9AD /* BackForwardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackForwardView.h; sourceTree = "<group>"; };
+		E135CD0118E2C89700D8D9AD /* BackForwardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackForwardView.m; sourceTree = "<group>"; };
+		E14F069F18E1289000768D0D /* bottom_browser_back_disable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottom_browser_back_disable.png; sourceTree = "<group>"; };
+		E14F06A018E1289000768D0D /* bottom_browser_back_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottom_browser_back_normal.png; sourceTree = "<group>"; };
+		E16848AD18E16AFB00213191 /* MovieControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieControlView.h; sourceTree = "<group>"; };
+		E16848AE18E16AFB00213191 /* MovieControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieControlView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +192,8 @@
 		E1211F2218E011C300FBA23C /* MoviePlayer */ = {
 			isa = PBXGroup;
 			children = (
+				E14F069F18E1289000768D0D /* bottom_browser_back_disable.png */,
+				E14F06A018E1289000768D0D /* bottom_browser_back_normal.png */,
 				E1211F2318E011C300FBA23C /* airplay_disable.png */,
 				E1211F2418E011C300FBA23C /* airplay_normal.png */,
 				E1211F2518E011C300FBA23C /* airplay_on.png */,
@@ -264,12 +279,8 @@
 				E1294AE518DEDB4800D6703A /* RootViewController.m */,
 				E1294B2C18DEF4FF00D6703A /* VideoPlayerViewController.h */,
 				E1294B2D18DEF4FF00D6703A /* VideoPlayerViewController.m */,
-				E1211F7518E012E700FBA23C /* BottomProgressView.h */,
-				E1211F7618E012E700FBA23C /* BottomProgressView.m */,
-				E1211F7818E0131500FBA23C /* TopTitleBarView.h */,
-				E1211F7918E0131500FBA23C /* TopTitleBarView.m */,
-				E1211F7B18E013E200FBA23C /* LetfToolView.h */,
-				E1211F7C18E013E200FBA23C /* LetfToolView.m */,
+				E135CCFB18E2C62000D8D9AD /* Overlay */,
+				E135CCFC18E2C64100D8D9AD /* Category */,
 				E1294AC718DEDADC00D6703A /* Images.xcassets */,
 				E1294ABC18DEDADC00D6703A /* Supporting Files */,
 			);
@@ -305,6 +316,32 @@
 				E1294AD718DEDADC00D6703A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E135CCFB18E2C62000D8D9AD /* Overlay */ = {
+			isa = PBXGroup;
+			children = (
+				E1211F7518E012E700FBA23C /* BottomProgressView.h */,
+				E1211F7618E012E700FBA23C /* BottomProgressView.m */,
+				E1211F7818E0131500FBA23C /* TopTitleBarView.h */,
+				E1211F7918E0131500FBA23C /* TopTitleBarView.m */,
+				E1211F7B18E013E200FBA23C /* RightToolView.h */,
+				E1211F7C18E013E200FBA23C /* RightToolView.m */,
+				E16848AD18E16AFB00213191 /* MovieControlView.h */,
+				E16848AE18E16AFB00213191 /* MovieControlView.m */,
+				E135CD0018E2C89700D8D9AD /* BackForwardView.h */,
+				E135CD0118E2C89700D8D9AD /* BackForwardView.m */,
+			);
+			name = Overlay;
+			sourceTree = "<group>";
+		};
+		E135CCFC18E2C64100D8D9AD /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				E135CCFD18E2C6CE00D8D9AD /* UIColor+hexRGB.h */,
+				E135CCFE18E2C6CE00D8D9AD /* UIColor+hexRGB.m */,
+			);
+			name = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,10 +436,12 @@
 				E1211F7018E011C300FBA23C /* vol_bg.png in Resources */,
 				E1211F7318E011C300FBA23C /* volume_normal.png in Resources */,
 				E1211F5E18E011C300FBA23C /* play_normal.png in Resources */,
+				E14F06A218E1289000768D0D /* bottom_browser_back_normal.png in Resources */,
 				E1211F5118E011C300FBA23C /* definition_click.png in Resources */,
 				E1211F7118E011C300FBA23C /* volume_mute_normal.png in Resources */,
 				E1211F4E18E011C300FBA23C /* airplay_on.png in Resources */,
 				E1211F5C18E011C300FBA23C /* play_next_one_normal.png in Resources */,
+				E14F06A118E1289000768D0D /* bottom_browser_back_disable.png in Resources */,
 				E1211F6B18E011C300FBA23C /* top_title_back_white_normal.png in Resources */,
 				E1211F6C18E011C300FBA23C /* unlock_normal.png in Resources */,
 				E1211F6718E011C300FBA23C /* screen_pop_bg.png in Resources */,
@@ -445,12 +484,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1294AC618DEDADC00D6703A /* AppDelegate.m in Sources */,
+				E16848AF18E16AFB00213191 /* MovieControlView.m in Sources */,
 				E1294B2E18DEF4FF00D6703A /* VideoPlayerViewController.m in Sources */,
+				E135CCFF18E2C6CE00D8D9AD /* UIColor+hexRGB.m in Sources */,
 				E1294AC218DEDADC00D6703A /* main.m in Sources */,
-				E1211F7D18E013E200FBA23C /* LetfToolView.m in Sources */,
+				E1211F7D18E013E200FBA23C /* RightToolView.m in Sources */,
 				E1211F7A18E0131500FBA23C /* TopTitleBarView.m in Sources */,
 				E1211F7718E012E700FBA23C /* BottomProgressView.m in Sources */,
 				E1294AE618DEDB4800D6703A /* RootViewController.m in Sources */,
+				E135CD0218E2C89700D8D9AD /* BackForwardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

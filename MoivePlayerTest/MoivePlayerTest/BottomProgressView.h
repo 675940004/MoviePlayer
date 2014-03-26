@@ -16,9 +16,7 @@
 
 @property (nonatomic, retain) UISlider * progressSlider;
 
-@property (nonatomic, retain) UILabel * currentTimeLabel;
-
-@property (nonatomic, retain) UILabel * endTimeLabel;
+@property (nonatomic, retain) UILabel * timeLabel;
 
 @property (nonatomic, retain) UIButton * volumeButton;
 

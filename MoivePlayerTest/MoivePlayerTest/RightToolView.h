@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LetfToolView : UIView
+@interface RightToolView : UIView
+
+@property (nonatomic, retain) UIButton * lockButton;
+
+@property (nonatomic, retain) UIButton * downloadButton;
 
 @end
