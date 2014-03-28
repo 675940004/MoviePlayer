@@ -7,7 +7,6 @@
 //
 
 #import "RightToolView.h"
-
 @implementation RightToolView
 
 - (void)dealloc
@@ -25,10 +24,10 @@
         /*lockButton*/
         _lockButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_lockButton setBackgroundImage:[UIImage imageWithContentsOfFile:
-                                         [bundle pathForResource:@"lock_normal" ofType:@"png"]]
+                                         [bundle pathForResource:@"unlock_normal" ofType:@"png"]]
                                forState:UIControlStateNormal];
         [_lockButton setBackgroundImage:[UIImage imageWithContentsOfFile:
-                                         [bundle pathForResource:@"lock_on" ofType:@"png"]]
+                                         [bundle pathForResource:@"unlock_on" ofType:@"png"]]
                                forState:UIControlStateHighlighted];
         [self addSubview:_lockButton];
         

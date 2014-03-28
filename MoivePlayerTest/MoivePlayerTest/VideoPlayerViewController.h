@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-@class MPMoviePlayerController;
+#import <MediaPlayer/MediaPlayer.h>
+
 @class BottomProgressView;
 @class TopTitleBarView;
 @class MovieControlView;
 @class RightToolView;
 @class BackForwardView;
+@class VolumeView;
 
 @interface VideoPlayerViewController : UIViewController
 
@@ -44,6 +46,16 @@
 /**
  *用于显示前进后退的状态和时间
  */
-@property (nonatomic, retain) BackForwardView * backForwardView;;
+@property (nonatomic, retain) BackForwardView * backForwardView;
+
+/**
+ *音量调
+ */
+@property (nonatomic, retain) VolumeView * volumeView;
+
+/**
+ *初始化播放器方法，传入视频播放url和视频来源类型
+ */
+- (id) initWithContentUrl:(NSURL *)url movieSourceType:(MPMovieSourceType)sourceType;
 
 @end

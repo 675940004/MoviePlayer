@@ -33,7 +33,7 @@
 
 -(void)layoutSubviews
 {
-    [_timeLabel setFrame:CGRectMake(0, self.frame.size.width-40, self.frame.size.width, 20)];
+    [_timeLabel setFrame:CGRectMake(0, self.frame.size.height-25, self.frame.size.width, 15)];
 }
 
 - (void)setTimeLabelTextWithcurrentTime:(NSString *)currentTime endTime:(NSString *)duration

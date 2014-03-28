@@ -10,6 +10,8 @@
 
 @interface RightToolView : UIView
 
+@property (nonatomic, assign) BOOL isLocked;
+
 @property (nonatomic, retain) UIButton * lockButton;
 
 @property (nonatomic, retain) UIButton * downloadButton;

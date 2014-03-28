@@ -39,7 +39,18 @@
 
 - (void)videoButtonPressed:(UIButton *)sender
 {
-    VideoPlayerViewController * playVC = [[VideoPlayerViewController alloc] init];
+    NSURL *theMovieURL = nil;
+	NSBundle *bundle = [NSBundle mainBundle];
+	if (bundle)
+	{
+		NSString *moviePath = [bundle pathForResource:@"Movie" ofType:@"m4v"];
+		if (moviePath)
+		{
+			theMovieURL = [NSURL fileURLWithPath:moviePath];
+		}
+	}
+    
+    VideoPlayerViewController * playVC = [[VideoPlayerViewController alloc] initWithContentUrl:theMovieURL movieSourceType:MPMovieSourceTypeFile];
     [self presentViewController:playVC animated:YES completion:nil];
     [playVC release];
 }

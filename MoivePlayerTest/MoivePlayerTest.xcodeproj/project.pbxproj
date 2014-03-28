@@ -72,6 +72,7 @@
 		E14F06A118E1289000768D0D /* bottom_browser_back_disable.png in Resources */ = {isa = PBXBuildFile; fileRef = E14F069F18E1289000768D0D /* bottom_browser_back_disable.png */; };
 		E14F06A218E1289000768D0D /* bottom_browser_back_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = E14F06A018E1289000768D0D /* bottom_browser_back_normal.png */; };
 		E16848AF18E16AFB00213191 /* MovieControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = E16848AE18E16AFB00213191 /* MovieControlView.m */; };
+		E1E427BD18E3FBEE0068CC8C /* VolumeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E427BC18E3FBEE0068CC8C /* VolumeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +163,8 @@
 		E14F06A018E1289000768D0D /* bottom_browser_back_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottom_browser_back_normal.png; sourceTree = "<group>"; };
 		E16848AD18E16AFB00213191 /* MovieControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieControlView.h; sourceTree = "<group>"; };
 		E16848AE18E16AFB00213191 /* MovieControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieControlView.m; sourceTree = "<group>"; };
+		E1E427BB18E3FBEE0068CC8C /* VolumeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeView.h; sourceTree = "<group>"; };
+		E1E427BC18E3FBEE0068CC8C /* VolumeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +334,8 @@
 				E16848AE18E16AFB00213191 /* MovieControlView.m */,
 				E135CD0018E2C89700D8D9AD /* BackForwardView.h */,
 				E135CD0118E2C89700D8D9AD /* BackForwardView.m */,
+				E1E427BB18E3FBEE0068CC8C /* VolumeView.h */,
+				E1E427BC18E3FBEE0068CC8C /* VolumeView.m */,
 			);
 			name = Overlay;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 				E1211F7D18E013E200FBA23C /* RightToolView.m in Sources */,
 				E1211F7A18E0131500FBA23C /* TopTitleBarView.m in Sources */,
 				E1211F7718E012E700FBA23C /* BottomProgressView.m in Sources */,
+				E1E427BD18E3FBEE0068CC8C /* VolumeView.m in Sources */,
 				E1294AE618DEDB4800D6703A /* RootViewController.m in Sources */,
 				E135CD0218E2C89700D8D9AD /* BackForwardView.m in Sources */,
 			);
@@ -614,6 +620,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoivePlayerTest/MoivePlayerTest-Prefix.pch";
 				INFOPLIST_FILE = "MoivePlayerTest/MoivePlayerTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "05A21954-BDD0-4FC3-906F-2E60D40AA17C";
 				WRAPPER_EXTENSION = app;
@@ -630,6 +637,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoivePlayerTest/MoivePlayerTest-Prefix.pch";
 				INFOPLIST_FILE = "MoivePlayerTest/MoivePlayerTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "05A21954-BDD0-4FC3-906F-2E60D40AA17C";
 				WRAPPER_EXTENSION = app;

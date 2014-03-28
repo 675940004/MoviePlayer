@@ -33,6 +33,7 @@ const float kButtonWith = 28.0;
     self = [super initWithFrame:frame];
     if (self) {
         self.userInteractionEnabled = YES;
+        self.volumeViewHiden = YES;
         NSBundle  * bundle = [NSBundle mainBundle];
         
         /*半透明黑色背景*/

@@ -20,6 +20,8 @@
 
 @property (nonatomic, retain) UIButton * volumeButton;
 
+@property (nonatomic, assign) BOOL volumeViewHiden;
+
 - (void)setPlayerProgressValue:(float)value currentTime:(NSString *)currentTime endTime:(NSString *)duration;
 
 @end
