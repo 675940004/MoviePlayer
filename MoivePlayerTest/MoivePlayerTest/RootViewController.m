@@ -52,6 +52,7 @@
     
     VideoPlayerViewController * playVC = [[VideoPlayerViewController alloc] initWithContentUrl:theMovieURL movieSourceType:MPMovieSourceTypeFile];
     [self presentViewController:playVC animated:YES completion:nil];
+    NSLog(@"dsdfsfdsdfsdfs");
     [playVC release];
 }
 

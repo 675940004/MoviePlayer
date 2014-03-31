@@ -39,7 +39,7 @@ const float kButtonWith = 28.0;
         /*半透明黑色背景*/
         _bgView = [[UIImageView alloc] init];
         _bgView.userInteractionEnabled = YES;
-        UIImage * bgImage = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"bottom_bg" ofType:@"png"]];
+        UIImage * bgImage = [UIImage imageWithContentsOfFile:[bundle pathForResource:@"player_bottom_bg" ofType:@"png"]];
         [_bgView setImage:[bgImage resizableImageWithCapInsets:UIEdgeInsetsMake(0.5, 0, 0, 0) resizingMode:UIImageResizingModeStretch]];
         [self addSubview:_bgView];
         
@@ -80,7 +80,7 @@ const float kButtonWith = 28.0;
     [_bgView setFrame:self.bounds];
     [_airplayButton setFrame:CGRectMake(20, (self.frame.size.height - kButtonWith)/2, kButtonWith, kButtonWith)];
     [_progressSlider setFrame:CGRectMake(40+kButtonWith,
-                                        (self.frame.size.height - 6)/2,
+                                        (self.frame.size.height - 26)/2,
                                         self.frame.size.width - (40+kButtonWith)*2-100,
                                          6)];
     [_timeLabel setFrame:CGRectMake(_progressSlider.frame.origin.x+_progressSlider.frame.size.width+5, 0 , 100, self.frame.size.height)];

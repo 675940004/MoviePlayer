@@ -25,7 +25,7 @@ const float kBackForwardViewHeight = 93.0f;
 {
     NSTimer * timer;
     BOOL overlayHiden;
-    
+    BOOL didDragedProgressSlider;
     /*用与touch事件*/
     CGPoint prePoint;
     CGPoint currentPoint;
@@ -35,7 +35,7 @@ const float kBackForwardViewHeight = 93.0f;
     
     /*用于拖拽进度条和音量*/
     float currentProgressValue;
-    
+    /*引导图*/
     UIImageView * guideView;
 }
 
@@ -57,6 +57,7 @@ const float kBackForwardViewHeight = 93.0f;
 
 - (void)dealloc
 {
+    NSLog(@"dealloc");
     self.moviePlayerController = nil;
     self.bottomProgressView = nil;
     self.topView = nil;
@@ -88,7 +89,6 @@ const float kBackForwardViewHeight = 93.0f;
     if (self) {
         /*注册通知*/
         [self installMovieNotificationObservers];
-        
         /*初始化播放器*/
         MPMoviePlayerController * moviePlayerVC = [[MPMoviePlayerController alloc] initWithContentURL:url];
         [moviePlayerVC setMovieSourceType:sourceType];
@@ -120,16 +120,28 @@ const float kBackForwardViewHeight = 93.0f;
     [self play];
 }
 
-- (void)tapGestureChanged:(UITapGestureRecognizer *)gesture
-{
-}
-
 #pragma mark - 横竖屏适配
+
+#if  __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
 
 -(BOOL)shouldAutorotate
 {
     return !_rightToolView.isLocked;
 }
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskLandscape;
+}
+
+#else
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    return  (toInterfaceOrientation == UIInterfaceOrientationMaskLandscape);
+}
+
+#endif
 
 -(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                                                 duration:(NSTimeInterval)duration
@@ -172,67 +184,31 @@ const float kBackForwardViewHeight = 93.0f;
     [self buildVolumeOverlayView];
 }
 
-#pragma mark - Control Center
-
-- (void)playPauseButtonPressed:(UIButton *)sender
+-(void)setOverlayViewHiden:(BOOL)hiden
 {
-    if (self.controlView.isPlaying) {
-        [self pause];
-    } else {
-        [self play];
+    /*维护标志位*/
+    overlayHiden = hiden;
+    
+    self.bottomProgressView.hidden = hiden;
+    /*如果是横屏，控制全部子视图*/
+    if (_moviePlayerController.view.frame.size.height == self.view.frame.size.width) {
+        self.topView.hidden = hiden;
+        self.controlView.hidden = hiden;
+        self.rightToolView.hidden = hiden;
+        /*当解锁的时候*/
+        self.rightToolView.downloadButton.hidden = hiden;
+        if (!self.bottomProgressView.volumeViewHiden) {
+            self.volumeView.hidden = hiden;
+            self.bottomProgressView.volumeViewHiden = hiden;
+        }
     }
-}
-
-- (void)play
-{
-    NSBundle * bundle = [NSBundle mainBundle];
-    
-    [self.moviePlayerController prepareToPlay];
-    [self.moviePlayerController play];
-    [self performSelector:@selector(setOverlayViewHiden:)
-               withObject:[NSNumber numberWithBool:YES]
-               afterDelay:3.0];
-    self.controlView.isPlaying = YES;
-    /*切换button图片*/
-    [self.controlView.playPauseButton setBackgroundImage:[UIImage imageWithContentsOfFile:
-                                [bundle pathForResource:@"suspended_normal" ofType:@"png"]]
-                      forState:UIControlStateNormal];
-    [self.controlView.playPauseButton setBackgroundImage:[UIImage imageWithContentsOfFile:
-                                [bundle pathForResource:@"suspended_on" ofType:@"png"]]
-                      forState:UIControlStateHighlighted];
-    
-    /*开启定时器，刷新进度条进度*/
-    if (timer) {
-        [timer invalidate];
-        timer = nil;
-    }
-    timer = [NSTimer scheduledTimerWithTimeInterval:kTimerInterval
-                                             target:self
-                                           selector:@selector(refreshBottomProgressViewstate)
-                                           userInfo:nil
-                                            repeats:YES];
-}
-
-- (void)pause
-{
-    NSBundle * bundle = [NSBundle mainBundle];
-    
-    [self.moviePlayerController pause];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self
-                                             selector:@selector(setOverlayViewHiden:)
-                                               object:[NSNumber numberWithBool:YES]];
-    self.controlView.isPlaying = NO;
-    /*切换button图片*/
-    [self.controlView.playPauseButton setBackgroundImage:[UIImage imageWithContentsOfFile:
-                                [bundle pathForResource:@"play_normal" ofType:@"png"]]
-                      forState:UIControlStateNormal];
-    [self.controlView.playPauseButton setBackgroundImage:[UIImage imageWithContentsOfFile:
-                                [bundle pathForResource:@"play_on" ofType:@"png"]]
-                      forState:UIControlStateHighlighted];
-    
-    if (timer) {
-        [timer invalidate];
-        timer = nil;
+    /*如果是竖屏，只控制bottomView*/
+    else {
+        self.topView.hidden = YES;
+        self.controlView.hidden = YES;
+        self.rightToolView.hidden = YES;
+        self.volumeView.hidden = YES;
+        self.bottomProgressView.volumeViewHiden = YES;
     }
 }
 
@@ -247,6 +223,10 @@ const float kBackForwardViewHeight = 93.0f;
                                                                                    self.moviePlayerController.view.frame.size.width,
                                                                                    45)];
         [_bottomProgressView.volumeButton addTarget:self action:@selector(volumeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomProgressView.progressSlider addTarget:self action:@selector(handleProgressSliderTouchDown) forControlEvents:UIControlEventTouchDown];
+        [_bottomProgressView.progressSlider addTarget:self action:@selector(handleProgressSliderTouchDragInside) forControlEvents:UIControlEventTouchDragInside];
+        [_bottomProgressView.progressSlider addTarget:self action:@selector(handleProgressSliderTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomProgressView.progressSlider addTarget:self action:@selector(handleProgressSliderTouchUpInside) forControlEvents:UIControlEventTouchUpOutside];
         [self.view addSubview:_bottomProgressView];
     }
     
@@ -256,15 +236,44 @@ const float kBackForwardViewHeight = 93.0f;
                                             self.moviePlayerController.view.frame.size.width,
                                              45)];
 }
+- (void)handleProgressSliderTouchDown
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self
+                                             selector:@selector(setOverlayViewHiden:)
+                                               object:[NSNumber numberWithBool:YES]];
+    didDragedProgressSlider = NO;
+}
 
+- (void)handleProgressSliderTouchDragInside
+{
+    didDragedProgressSlider = YES;
+    [self removeTimer];
+    [self refreshBottomProgressByTouch:self.moviePlayerController.duration*_bottomProgressView.progressSlider.value];
+}
+
+- (void)handleProgressSliderTouchUpInside
+{
+    if (didDragedProgressSlider) {
+        self.moviePlayerController.currentPlaybackTime = self.moviePlayerController.duration*_bottomProgressView.progressSlider.value;
+    }
+    
+    [self addTimer];
+    
+    didDragedProgressSlider = NO;
+    [self performSelector:@selector(setOverlayViewHiden:)
+               withObject:[NSNumber numberWithBool:YES]
+               afterDelay:3.0];
+}
+
+/*更新进度条进度和播放时间，通过定时器调用*/
 - (void)refreshBottomProgressViewstate
 {
     [self.bottomProgressView setPlayerProgressValue:_moviePlayerController.currentPlaybackTime/_moviePlayerController.duration
                                         currentTime:[self formatTime:_moviePlayerController.currentPlaybackTime]
                                             endTime:[self formatTime:_moviePlayerController.duration]];
-    //NSLog(@"%f,%f",_moviePlayerController.currentPlaybackTime,_moviePlayerController.duration);
 }
 
+/*更新进度条进度和播放时间，通过手势调用*/
 - (void)refreshBottomProgressByTouch:(float)currentTime
 {
     [self.bottomProgressView setPlayerProgressValue:currentTime/_moviePlayerController.duration
@@ -272,10 +281,12 @@ const float kBackForwardViewHeight = 93.0f;
                                             endTime:[self formatTime:_moviePlayerController.duration]];
 }
 
-- (void)refreshBackForwardViewState
+- (void)progressValueDidChanged
 {
-    [self.backForwardView setTimeLabelTextWithcurrentTime:[self formatTime:currentProgressValue]
-                                                  endTime:[self formatTime:_moviePlayerController.duration]];
+    /*调整进度条*/
+    [self refreshBottomProgressByTouch:currentProgressValue];
+    /*调整当前播放时间显示*/
+    [self refreshBackForwardViewState];
 }
 
 - (NSString *)formatTime:(double)time {
@@ -323,6 +334,9 @@ const float kBackForwardViewHeight = 93.0f;
 
 - (void)backButtonPressed:(UIButton *)sender
 {
+    /*退出之前必须清除timer，否则造成player对象无法释放*/
+    [self removeTimer];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -417,6 +431,74 @@ const float kBackForwardViewHeight = 93.0f;
                                           kBackForwardViewWith,kBackForwardViewHeight)];
 }
 
+- (void)playPauseButtonPressed:(UIButton *)sender
+{
+    if (self.controlView.isPlaying) {
+        [self pause];
+    } else {
+        [self play];
+    }
+}
+
+- (void)refreshBackForwardViewState
+{
+    [self.backForwardView setTimeLabelTextWithcurrentTime:[self formatTime:currentProgressValue]
+                                                  endTime:[self formatTime:_moviePlayerController.duration]];
+}
+#pragma mark - Control Center
+
+- (void)play
+{
+    NSBundle * bundle = [NSBundle mainBundle];
+    
+    [self.moviePlayerController prepareToPlay];
+    [self.moviePlayerController play];
+    [self performSelector:@selector(setOverlayViewHiden:)
+               withObject:[NSNumber numberWithBool:YES]
+               afterDelay:3.0];
+    self.controlView.isPlaying = YES;
+    /*切换button图片*/
+    [self.controlView.playPauseButton setBackgroundImage:[UIImage imageWithContentsOfFile:
+                                                          [bundle pathForResource:@"suspended_normal" ofType:@"png"]]
+                                                forState:UIControlStateNormal];
+    [self.controlView.playPauseButton setBackgroundImage:[UIImage imageWithContentsOfFile:
+                                                          [bundle pathForResource:@"suspended_on" ofType:@"png"]]
+                                                forState:UIControlStateHighlighted];
+    
+    /*开启定时器，刷新进度条进度*/
+    
+    [self addTimer];
+}
+
+- (void)pause
+{
+    NSBundle * bundle = [NSBundle mainBundle];
+    
+    [self.moviePlayerController pause];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self
+                                             selector:@selector(setOverlayViewHiden:)
+                                               object:[NSNumber numberWithBool:YES]];
+    self.controlView.isPlaying = NO;
+    /*切换button图片*/
+    [self.controlView.playPauseButton setBackgroundImage:[UIImage imageWithContentsOfFile:
+                                                          [bundle pathForResource:@"play_normal" ofType:@"png"]]
+                                                forState:UIControlStateNormal];
+    [self.controlView.playPauseButton setBackgroundImage:[UIImage imageWithContentsOfFile:
+                                                          [bundle pathForResource:@"play_on" ofType:@"png"]]
+                                                forState:UIControlStateHighlighted];
+    
+    
+    [self removeTimer];
+}
+
+- (void)playNext
+{
+}
+
+- (void)playPre
+{
+}
+
 #pragma mark - 音量条
 
 - (void)buildVolumeOverlayView
@@ -444,6 +526,8 @@ const float kBackForwardViewHeight = 93.0f;
     }
 }
 
+
+/*收到系统通知时调用*/
 - (void)systemVolumeChanged:(NSNotification *)noti {
     NSBundle * bundle = [NSBundle mainBundle];
     float volume = [[[noti userInfo] objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"] floatValue];
@@ -504,19 +588,17 @@ const float kBackForwardViewHeight = 93.0f;
 /*播放完成*/
 - (void) moviePlayBackDidFinish:(NSNotification*)notification
 {
+    [self removeTimer];
+
     /*将播放进度调整到初始状态*/
-    if (self.moviePlayerController.playbackState == MPMoviePlaybackStatePaused) {
-        if (timer) {
-            [timer invalidate];
-            timer = nil;
-        }
-        
+    if (self.moviePlayerController) {
         [self.moviePlayerController setCurrentPlaybackTime:0.0f];
         [self refreshBottomProgressViewstate];
         [self pause];
     }
 }
 
+/*从后台进入前台时会被调用*/
 - (void) mediaIsPreparedToPlayDidChange:(NSNotification*)notification
 {
     if (_moviePlayerController.playbackState == MPMoviePlaybackStatePaused) {
@@ -643,44 +725,24 @@ const float kBackForwardViewHeight = 93.0f;
         }
     }
 }
-
-- (void)progressValueDidChanged
+#pragma mark - timer
+-(void)addTimer
 {
-    /*调整进度条*/
-    [self refreshBottomProgressByTouch:currentProgressValue];
-    /*调整时间*/
-    [self refreshBackForwardViewState];
-}
-
-- (void)voiceValueDidChanged
-{
-}
-
--(void)setOverlayViewHiden:(BOOL)hiden
-{
-    /*维护标志位*/
-    overlayHiden = hiden;
-
-    self.bottomProgressView.hidden = hiden;
-    /*如果是横屏，控制全部子视图*/
-    if (_moviePlayerController.view.frame.size.height == self.view.frame.size.width) {
-        self.topView.hidden = hiden;
-        self.controlView.hidden = hiden;
-        self.rightToolView.hidden = hiden;
-        /*当解锁的时候*/
-        self.rightToolView.downloadButton.hidden = hiden;
-        if (!self.bottomProgressView.volumeViewHiden) {
-            self.volumeView.hidden = hiden;
-            self.bottomProgressView.volumeViewHiden = hiden;
-        }
+    if (timer) {
+        [self removeTimer];
     }
-    /*如果是竖屏，只控制bottomView*/
-    else {
-        self.topView.hidden = YES;
-        self.controlView.hidden = YES;
-        self.rightToolView.hidden = YES;
-        self.volumeView.hidden = YES;
-        self.bottomProgressView.volumeViewHiden = YES;
+    timer = [NSTimer scheduledTimerWithTimeInterval:kTimerInterval
+                                             target:self
+                                           selector:@selector(refreshBottomProgressViewstate)
+                                           userInfo:nil
+                                            repeats:YES];
+}
+
+- (void) removeTimer
+{
+    if (timer) {
+        [timer invalidate];
+        timer = nil;
     }
 }
 
